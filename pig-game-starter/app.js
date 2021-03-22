@@ -11,9 +11,9 @@ GAME RULES:
 
 //=======Form=======//
 const form = document.querySelector('.form');
-const submit = form.querySelector('#submit-button');
+const submit = form.querySelector('submit-button');
 
-function playerName(nameOne, nameTwo, target){
+function playername(nameOne, nameTwo, target){
     this.One = nameOne;
     this.Two = nameTwo;
     this.targetScore = target;
@@ -173,8 +173,8 @@ function winner(){
     else if(parseInt(playerTwoTotal.innerHTML) >= targetScore){
         j = 1;
         winnerSound.play();
-        holdBtn.style.pointerEvents = 'none';
-        shuffleBtn.style.pointerEvents = 'none';
+       
+       
     }
     document.getElementById(`name-${j}`).classList.add('winner')
     document.querySelector(`.player-${j}-panel`).classList.add('winner-wrapper');
