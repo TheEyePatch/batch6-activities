@@ -93,7 +93,8 @@ function pieceMove(e){
 // Will store the selected Piece to the Variable "currentPiece"
    function selectPiece(){
         currentPiece = piece;
-        currentPiece.style.backgroundColor = 'blue';
+        currentPiece.style.backgroundColor = '#99CCFF';
+        currentPiece.style.border = '2px solid #99CCFF';
         console.log(currentPiece);
         return pieceSelected = true;
    }
@@ -113,7 +114,7 @@ function pieceMove(e){
             console.log('White Just Ate')
         }
         //=====If the tile has a White piece while selected piece is Black ===//
-        else if(whiteTurn === true && !piece.classList.contains('white-piece') && tile.style.backgroundColor === 'red'){
+        else if(whiteTurn === true && !piece.classList.contains('white-piece') && tile.style.backgroundColor == 'rgb(255, 153, 153)'){
             appendEmptyTile();
         }
         else if(whiteTurn === false && piece.classList.contains('white-piece')){
@@ -124,18 +125,20 @@ function pieceMove(e){
             whiteTurn = true;
             console.log('Black Just Ate')
         }
-        else if(whiteTurn === false && !piece.classList.contains('black-piece') && tile.style.backgroundColor === 'red'){
+        else if(whiteTurn === false && !piece.classList.contains('black-piece') && tile.style.backgroundColor == 'rgb(255, 153, 153)'){
             appendEmptyTile();
         }
         
         else if(whiteTurn === true && !piece.classList.contains('white-piece') || whiteTurn === true && piece.classList.contains('white-piece')){
             currentPiece.style.backgroundColor = null;
+            currentPiece.style.border = null;
             currentPiece = undefined;
             pieceSelected = false;
             removeRed();
         }
         else if(whiteTurn === false && !piece.classList.contains('black-piece') || whiteTurn === false && piece.classList.contains('black-piece')){
             currentPiece.style.backgroundColor = null;
+            currentPiece.style.border = null;
             currentPiece = undefined;
             pieceSelected = false;
             removeRed();
@@ -175,7 +178,8 @@ function pieceMove(e){
         if(whitePawns.includes(piece) && !piece.classList.contains('moved')){
             console.log(true);
             for(i = 0; i<3; i++){
-                document.getElementById(`${cellFile}${cellRank - i}`).style.backgroundColor = 'red';
+                document.getElementById(`${cellFile}${cellRank - i}`).style.backgroundColor = 'rgb(255,153,153)';
+                document.getElementById(`${cellFile}${cellRank - i}`).style.boxShadow = 'inset 0px 1px 10px #FF3333';
             }
             //piece.classList.add('moved');
         }
@@ -183,22 +187,28 @@ function pieceMove(e){
         else if(blackPawns.includes(piece) && !piece.classList.contains('moved')){
             console.log(false)
             for(i = 0; i<3; i++){
-                document.getElementById(`${cellFile}${cellRank + i}`).style.backgroundColor = 'red';
+                document.getElementById(`${cellFile}${cellRank + i}`).style.backgroundColor = 'rgb(255,153,153)';
+                document.getElementById(`${cellFile}${cellRank + i}`).style.boxShadow = 'inset 0px 1px 10px #FF3333';
             }
             //piece.classList.add('moved');
         }
         //======if White pawn has been moved, white pawn will only move one tile ===///
         else if(whitePawns.includes(piece)){
-            document.getElementById(`${cellFile}${cellRank - 1}`).style.backgroundColor = 'red';
+            document.getElementById(`${cellFile}${cellRank - 1}`).style.backgroundColor = 'rgb(255,153,153)';
+            document.getElementById(`${cellFile}${cellRank - 1}`).style.boxShadow = 'inset 0px 1px 10px #FF3333';
         }
         //===== if Black pawn has been moved, black pawn will only move one tile ===//
         else if(blackPawns.includes(piece)){
-            document.getElementById(`${cellFile}${cellRank + 1}`).style.backgroundColor = 'red';
+            document.getElementById(`${cellFile}${cellRank + 1}`).style.backgroundColor = 'rgb(255,153,153)';
+            document.getElementById(`${cellFile}${cellRank + 1}`).style.boxShadow = 'inset 0px 1px 10px #FF3333';
         }
         
     }
     function removeRed(){
-        tiles.forEach(item => item.style.backgroundColor = null);
+        tiles.forEach(item => {
+            item.style.backgroundColor = null
+            item.style.boxShadow = null
+        } );
     }
     function rookRules(){
         let whiteRook = pieces.rook.white;
@@ -212,12 +222,14 @@ function pieceMove(e){
         }
         function rookHorizontal(){
             for(i = 0; i < files.length; i++){
-                document.getElementById(`${files[i]}${cell_rank}`).style.backgroundColor = 'red';
+                document.getElementById(`${files[i]}${cell_rank}`).style.backgroundColor = 'rgb(255,153,153)';
+                document.getElementById(`${files[i]}${cell_rank}`).style.boxShadow = 'inset 0px 1px 10px #FF3333';
             }
         }
         function rookVertical(){
             for(let j = 0; j < ranks.length; j++){
-                document.getElementById(`${cell_file}${ranks[j]}`).style.backgroundColor = 'red';
+                document.getElementById(`${cell_file}${ranks[j]}`).style.backgroundColor = 'rgb(255,153,153)';
+                document.getElementById(`${cell_file}${ranks[j]}`).style.boxShadow = 'inset 0px 1px 10px #FF3333';
             }
         }   
     }
@@ -235,7 +247,8 @@ function pieceMove(e){
         function bishopDiagonal1(){
              for(i = 0; i < tile_names.length; i+=9){
                 let bishopTile = tile_names[tile_names.indexOf(e.currentTarget.id)+i];
-                document.getElementById(`${bishopTile}`).style.backgroundColor ='red';
+                document.getElementById(`${bishopTile}`).style.backgroundColor ='rgb(255,153,153)';
+                document.getElementById(`${bishopTile}`).style.boxShadow ='inset 0px 1px 10px #FF3333';
                 if(document.getElementById(`${bishopTile}`).id.slice(0,1) === 'h' ||document.getElementById(`${bishopTile}`).id.slice(1) === '1'){
                     break;
                 }
@@ -245,7 +258,8 @@ function pieceMove(e){
         function bishopDiagonal2(){
             for(i = 0; i < tile_names.length; i+=9){
                 let bishopTile = tile_names[tile_names.indexOf(e.currentTarget.id)-i];
-                document.getElementById(`${bishopTile}`).style.backgroundColor ='red';
+                document.getElementById(`${bishopTile}`).style.backgroundColor ='rgb(255,153,153)';
+                document.getElementById(`${bishopTile}`).style.boxShadow ='inset 0px 1px 10px #FF3333';
                 if(document.getElementById(`${bishopTile}`).id.slice(0,1) === 'a' ||document.getElementById(`${bishopTile}`).id.slice(1) === '8'){
                     break;
                 }
@@ -254,7 +268,8 @@ function pieceMove(e){
         function bishopDiagonal3(){
             for(i = 0; i < tile_names.length; i+=7){
                 let bishopTile = tile_names[tile_names.indexOf(e.currentTarget.id)-i];
-                document.getElementById(`${bishopTile}`).style.backgroundColor ='red';
+                document.getElementById(`${bishopTile}`).style.backgroundColor ='rgb(255,153,153)';
+                document.getElementById(`${bishopTile}`).style.boxShadow ='inset 0px 1px 10px #FF3333';
                 if(document.getElementById(`${bishopTile}`).id.slice(0,1) === 'h' ||document.getElementById(`${bishopTile}`).id.slice(1) === '8'){
                     break;
                 }
@@ -263,7 +278,8 @@ function pieceMove(e){
         function bishopDiagonal4(){
             for(i = 0; i < tile_names.length; i+=7){
                 let bishopTile = tile_names[tile_names.indexOf(e.currentTarget.id)+i];
-                document.getElementById(`${bishopTile}`).style.backgroundColor ='red';
+                document.getElementById(`${bishopTile}`).style.backgroundColor ='rgb(255,153,153)';
+                document.getElementById(`${bishopTile}`).style.boxShadow ='inset 0px 1px 10px #FF3333';
                 if(document.getElementById(`${bishopTile}`).id.slice(0,1) === 'a' ||document.getElementById(`${bishopTile}`).id.slice(1) === '1'){
                     break;
                 }
